@@ -38,7 +38,7 @@
                 </li>
             @else
                 <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true">&rsaquo</span>
+                    <span aria-hidden="true">&rsaquo;</span>
                 </li>
             @endif
         </ul>

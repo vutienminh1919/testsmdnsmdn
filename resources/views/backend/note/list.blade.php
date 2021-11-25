@@ -7,9 +7,8 @@
                 <a type="button" class="btn btn-primary" href=" {{route('notes.create')}}">Add New Note</a>
             </div>
             <div class="col-4">
-                {{$notes->links()}}
+                {{$notes->onEachSide(1)->links('vendor.pagination.bootstrap-4')}}
             </div>
-
 
         </div>
     </div>
@@ -22,21 +21,20 @@
             <th>Title</th>
             <th>Content</th>
             <th>Category</th>
-
-
             <th colspan="3">Action</th>
             </thead>
             @foreach($notes as $note)
                 <tbody class="table table-striped">
                 <tr>
                     <td><b>{{$note->id}}</b></td>
-
                     <td>{{$note->title}}</td>
+                    <td>{{\Illuminate\Support\Str::limit($note->content, 20)}}
+                    </td>
 
-                    <td>{{$note->content}}</td>
                     <td>{{$note->category->name}}</td>
 
-                    <td><a type="button" class="btn btn-success" href="{{route("notes.showFormEdit",$note->id)}}">Edit</a>
+                    <td><a type="button" class="btn btn-success"
+                           href="{{route("notes.showFormEdit",$note->id)}}">Edit</a>
                     </td>
                     <td><a type="button" class="btn btn-info" href="{{route('notes.show',$note->id)}}">Detail</a>
                     </td>
@@ -71,3 +69,4 @@
 
 
 @endsection
+

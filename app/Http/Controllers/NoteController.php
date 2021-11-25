@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Repositories\NoteRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class NoteController extends Controller
 {
@@ -25,13 +26,15 @@ class NoteController extends Controller
 
     public function showFormCreate()
     {
-        return view("backend.note.create");
+        $categories = $this->noteRepository->getAllCategory();
+        return view("backend.note.create",compact('categories'));
     }
 
 
     public function store(Request $request)
     {
         $note = $this->noteRepository->create($request);
+
         return redirect()->route('notes.index');
     }
 
@@ -46,7 +49,8 @@ class NoteController extends Controller
     public function showFormEdit($id)
     {
         $note = $this->noteRepository->getById($id);
-        return view('backend.note.edit',compact('note'));
+        $categories = $this->noteRepository->getAllCategory();
+        return view('backend.note.edit',compact('note','categories'));
     }
 
     public function update(Request $request, $id)
@@ -62,4 +66,12 @@ class NoteController extends Controller
         $this->noteRepository->delete($id);
         return redirect()->route('notes.index');
     }
+
+    public function search(Request $request)
+    {
+        $noteResult = $this->noteRepository->search($request);
+        return view('backend.note.search', compact('noteResult'));
+    }
+
+
 }

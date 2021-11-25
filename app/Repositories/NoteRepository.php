@@ -14,6 +14,7 @@ class NoteRepository extends BaseRepository
     public function create(Request $request)
     {
         $data = $request->only('title','content','category_id');
+        $data['category_id'] = $request->input('category');
         $note = Note::create($data);
         return $note;
 
@@ -23,7 +24,15 @@ class NoteRepository extends BaseRepository
     {
         $note = Note::findOrFail($id);
         $data = $request->only('title','content','category_id');
+        $data['category_id'] = $request->input('category');
         return Note::where("id","=", $id)->update($data);
+
+    }
+
+    public function search(Request $request)
+    {
+        $noteResult =  Note::find($request->input('id'));
+        return $noteResult;
 
     }
 

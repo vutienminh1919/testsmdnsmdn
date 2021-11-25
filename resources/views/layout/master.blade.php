@@ -344,7 +344,7 @@
                                 Change password
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" onclick="return confirm('are you sure ?')">
+                            <a class="dropdown-item" href="{{route('admin.login')}}" onclick="return confirm('are you sure ?')">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>

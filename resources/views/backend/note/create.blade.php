@@ -1,5 +1,14 @@
 @extends('layout.master')
 @section('content')
+    @if (count($errors) > 0)
+        <div class="error-message">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="post" >
         <div class="col-md-10 offset-2">
             <div class="panel panel-default">
@@ -17,12 +26,16 @@
                         <textarea class="form-control" name="content"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="name" class="col-md-4 control-label">Category</label>
-                    <div class="col-md-6">
-                        <input id="price" type="text" class="form-control" name="category_id">
-                    </div>
-                </div>
+                <label><strong>Select Category :</strong></label><br/>
+
+                <select class="form-control" name="category" multiple="">
+
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+
+                </select>
+
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">

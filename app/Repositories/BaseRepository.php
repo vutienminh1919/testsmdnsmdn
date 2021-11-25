@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -30,6 +31,12 @@ class BaseRepository
     {
         $model = $this->model::query()->findOrFail($id);
         $model->delete();
+    }
+
+    public function getAllCategory()
+    {
+        $categories = Category::all();
+        return $categories;
     }
 
 

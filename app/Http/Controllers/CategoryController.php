@@ -24,6 +24,7 @@ class CategoryController extends Controller
 
     public function showFormCreate()
     {
+
         return view('backend.category.create');
     }
 
@@ -46,7 +47,7 @@ class CategoryController extends Controller
     public function showFormEdit($id)
     {
         $category = $this->categoryRepository->getById($id);
-        return view('backend.category',compact('category'));
+        return view('backend.category.edit',compact('category'));
 
     }
 
