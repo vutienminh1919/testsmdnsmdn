@@ -10,6 +10,9 @@
 
                     <div class="col-md-6">
                         <input id="name" type="text" class="form-control" name="title" value="{{$note->title}}">
+                        @error('title')
+                        <p class="text text-danger" >{{$message}}</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group">
@@ -17,6 +20,9 @@
 
                     <div class="col-md-6">
                         <textarea class="form-control" name="content">{{$note->content}}</textarea>
+                        @error('content')
+                        <p class="text text-danger" >{{$message}}</p>
+                        @enderror
                     </div>
                 </div>
 

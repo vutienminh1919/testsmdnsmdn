@@ -14,7 +14,10 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            ['name'=> 'family','description'=>'family'],
+            ['name'=> 'job','description'=>'job'],
+            ['name'=> 'school','description'=>'school'],
+            ['name'=> 'personal','description'=>'personal']
         ];
     }
 }

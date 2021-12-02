@@ -30,4 +30,25 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+
+        'client_id' => '823978148508-klumnahd77d31om1inv8kd3span92t6k.apps.googleusercontent.com',
+
+        'client_secret' => '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',
+
+        'redirect' => 'http://127.0.0.1:8000/callback/google',
+
+    ],
+    'github' => [
+        'client_id' => 'ef11792c378d56fde0d1' ,
+        'client_secret' => 'c5ae1c58e49ce16ae095d12b061237fa455de974',
+        'redirect' => 'http://127.0.0.1:8000/callback/github ',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
+    ],
+
 ];

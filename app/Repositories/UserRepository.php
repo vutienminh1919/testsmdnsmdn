@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends BaseRepository
@@ -14,9 +15,10 @@ class UserRepository extends BaseRepository
     }
     public function create(Request $request)
     {
-        $data = $request->only('name','email','password');
+        $data = $request->only('name','email','password','role_id');
         $data['password'] = Hash::make($request->password);
         $user = User::query()->create($data);
+        $user->roles()->attach($data['role_id']);
         return $user;
     }
     public function edit(Request $request, $id)
@@ -24,7 +26,21 @@ class UserRepository extends BaseRepository
         $user = User::query()->findOrFail($id);
         $data = $request->only('name','email','password');
         $data['password'] = Hash::make($request->password);
-        return User::query()->where("id","=",$id)->update($data);
+
+         User::query()->where("id","=",$id)->update($data);
+        $user->roles()->sync($request->role_id);
+
+
     }
+    public function getRoleByUser($userId)
+    {
+        $result = [];
+        $roles =  DB::table('role_user')->where('user_id',$userId)->get();
+        foreach ($roles as $role){
+            $result[] = $role->role_id;
+        }
+        return $result;
+    }
+
 
 }

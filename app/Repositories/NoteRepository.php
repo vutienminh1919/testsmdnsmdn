@@ -31,9 +31,13 @@ class NoteRepository extends BaseRepository
 
     public function search(Request $request)
     {
-        $noteResult =  Note::find($request->input('id'));
-        return $noteResult;
+        return Note::find($request->input('id'));
+    }
 
+    public function getUserById($userId)
+    {
+        $notes = Note::where('user_id',$userId)->get();
+        return $notes;
     }
 
 }

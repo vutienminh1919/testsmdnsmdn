@@ -12,7 +12,7 @@
             @foreach($noteResult as $note)
                 <tbody>
                 <tr>
-                    <td>{{$note->id}}</td>
+{{--                    <td>{{$note->id}}</td>--}}
                     <td>{{$note->title}}</td>
                     <td>{{$note->content}}</td>
                 </tr>

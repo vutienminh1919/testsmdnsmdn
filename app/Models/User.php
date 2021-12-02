@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static where(string $string, $email)
+ * @method static create(array $array)
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -18,9 +22,14 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+
         'name',
         'email',
         'password',
+        'avatar',
+        'provider',
+        'provider_id'
+
     ];
 
     /**
@@ -41,4 +50,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+
+    }
 }
+

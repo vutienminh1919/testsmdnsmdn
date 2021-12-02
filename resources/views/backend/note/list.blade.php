@@ -1,13 +1,17 @@
 @extends('layout.master')
 @section('content')
 
+
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-6">
                 <a type="button" class="btn btn-primary" href=" {{route('notes.create')}}">Add New Note</a>
             </div>
+            <div class="col-2">
+                <a type="button" class="btn btn-primary" href="{{route('notes.showSearchForm')}}">Search</a>
+            </div>
             <div class="col-4">
-                {{$notes->onEachSide(1)->links('vendor.pagination.bootstrap-4')}}
+                {{$notes->links('vendor.pagination.bootstrap-4')}}
             </div>
 
         </div>
@@ -21,6 +25,7 @@
             <th>Title</th>
             <th>Content</th>
             <th>Category</th>
+            <th>User</th>
             <th colspan="3">Action</th>
             </thead>
             @foreach($notes as $note)
@@ -30,8 +35,8 @@
                     <td>{{$note->title}}</td>
                     <td>{{\Illuminate\Support\Str::limit($note->content, 20)}}
                     </td>
-
                     <td>{{$note->category->name}}</td>
+                    <td>{{$note->user->name ?? " "}}</td>
 
                     <td><a type="button" class="btn btn-success"
                            href="{{route("notes.showFormEdit",$note->id)}}">Edit</a>

@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>@yield('title') </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    @toastr_css
 
 </head>
 
@@ -68,6 +70,8 @@
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item" href="{{route('notes.index')}}">NOTE LIST</a>
                     <a class="collapse-item" href="{{route('categories.index')}}">CATEGORY LIST</a>
+                    <a class="collapse-item" href="{{route('users.index')}}">USER LIST</a>
+                    <a class="collapse-item" href="{{route('repo')}}">REPO LIST</a>
                 </div>
             </div>
         </li>
@@ -326,7 +330,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{\Illuminate\Support\Facades\Auth::user()->name ?? ''}}</span>
                             <img class="img-profile rounded-circle"
-                                 src="{{asset('img/undraw_profile.svg')}}">
+                                 src="{{asset(\Illuminate\Support\Facades\Auth::user()->avatar ?? '')}}">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -367,13 +371,13 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
+{{--        <footer class="sticky-footer bg-white">--}}
+{{--            <div class="container my-auto">--}}
+{{--                <div class="copyright text-center my-auto">--}}
+{{--                    <span>Copyright &copy; Your Website 2021</span>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- End of Footer -->
 
     </div>
@@ -407,5 +411,16 @@
 <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
 
 </body>
+<script src="{{asset('js/main.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+@jquery
+@toastr_js
+@toastr_render
 
 </html>

@@ -2,6 +2,8 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use App\Models\Role;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -16,7 +18,7 @@ class BaseRepository
 
     public function getAll()
     {
-        $models = $this->model->all()->toQuery()->paginate(10);
+        $models = $this->model->all();
         return $models;
     }
 
@@ -38,6 +40,21 @@ class BaseRepository
         $categories = Category::all();
         return $categories;
     }
+
+    public function getAllTag()
+    {
+        $tags = Tag::all();
+        return $tags;
+    }
+
+    public function getAllRole()
+    {
+        $roles = Role::all();
+            return $roles;
+
+    }
+
+
 
 
 }

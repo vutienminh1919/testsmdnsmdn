@@ -1,4 +1,4 @@
-@extends('backend.layout.master')
+@extends('layout.master')
 @section('content')
 <form  class="form-horizontal" method="post">
     <div class="col-md-10 offset-2">

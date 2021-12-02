@@ -43,16 +43,25 @@
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control form-control-user" id="exampleFirstName"
                                        placeholder="Your Name">
+                                @error('name')
+                                <p class="text text-primary" >{{$message}}</p>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail"
                                        placeholder="Email Address">
+                                @error('email')
+                                <p class="text text-primary" >{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" name="password" class="form-control form-control-user"
                                            id="exampleInputPassword" placeholder="Password">
+                                    @error('password')
+                                    <p class="text text-primary" >{{$message}}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"

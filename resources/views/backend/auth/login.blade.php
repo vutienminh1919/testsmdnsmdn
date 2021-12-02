@@ -49,10 +49,16 @@
                                         <input type="email" name="email" class="form-control form-control-user"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Enter Email Address...">
+                                        @error('email')
+                                        <p class="text text-primary">{{$message}}</p>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control form-control-user"
                                                id="exampleInputPassword" placeholder="Password">
+                                        @error('password')
+                                        <p class="text text-primary">{{$message}}</p>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
@@ -62,14 +68,19 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login </button>
+                                        Login
+                                    </button>
+
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
+                                    <h6>or sign in by: </h6>
+                                    <a href="{{ url('/auth/redirect/google') }}" class="btn btn-google">Google
+                                        <i class="fab fa-google fa-fw"></i>
                                     </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                    <a href="{{ url('/auth/redirect/github') }}" class="btn btn-dark ">Github
+                                        <i class="fab fa-github"></i>
                                     </a>
+
+
                                 </form>
                                 <hr>
                                 <div class="text-center">

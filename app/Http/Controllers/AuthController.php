@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +17,13 @@ class AuthController extends Controller
         return view('backend.auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $data = $request->only('email', 'password');
 
 
         if (Auth::attempt($data)) {
+            toastr()->success('Login Success !');
             return redirect()->route('notes.index');
         } else {
             dd('chuc ban may man lan sau ');
@@ -41,11 +44,12 @@ class AuthController extends Controller
 
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         $data = $request->only('name', 'email', 'password');
         $data['password'] = Hash::make($request->password);
         $user = User::query()->create($data);
+        toastr()->success('Register Success !');
         return redirect()->route('admin.login');
     }
 }

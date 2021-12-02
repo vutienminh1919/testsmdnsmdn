@@ -6,7 +6,7 @@
                 <a type="button" class="btn btn-primary" href=" {{route('categories.create')}}">Add New Category</a>
             </div>
             <div class="col-4">
-                {{$categories->links()}}
+
             </div>
 
 

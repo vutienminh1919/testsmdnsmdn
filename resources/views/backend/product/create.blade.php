@@ -1,4 +1,4 @@
-@extends('backend.layout.master')
+@extends('layout.master')
 @section('content')
     <form method="post" enctype="multipart/form-data">
         <div class="col-md-10 offset-2">
@@ -28,6 +28,13 @@
                     <div class="col-md-6">
                         <input type="file" class="form-control" name="file">
                     </div>
+                </div>
+                <div class="form-group">
+                    @foreach($tags as $tag)
+                        <div class="form-check">
+                            <input class="form-check-input" name="tag" type="checkbox">{{$tag->title}}<br>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="form-group">

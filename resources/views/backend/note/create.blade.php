@@ -1,14 +1,6 @@
 @extends('layout.master')
 @section('content')
-    @if (count($errors) > 0)
-        <div class="error-message">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
     <form method="post" >
         <div class="col-md-10 offset-2">
             <div class="panel panel-default">
@@ -17,18 +9,26 @@
                 <div class="form-group">
                     <label for="name" class="col-md-4 control-label">Title</label>
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="title">
+                        <input id="name" type="text" class="form-control" name="title" value="{{old('title')}}">
+                        @error('title')
+                        <p class="text text-danger" >{{$message}}</p>
+                        @enderror
                     </div>
+
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-md-4 control-label">Content</label>
                     <div class="col-md-6">
-                        <textarea class="form-control" name="content"></textarea>
+                        <textarea class="form-control" name="content" >{{old('content')}}</textarea>
+                        @error('content')
+                        <p class="text text-danger" >{{$message}}</p>
+                        @enderror
                     </div>
-                </div>
-                <label><strong>Select Category :</strong></label><br/>
 
-                <select class="form-control" name="category" multiple="">
+                </div>
+                <label style="margin-left: 15px"><strong>Select Category :</strong></label><br/>
+
+                <select style="margin-left: 15px;margin-bottom: 30px;width: 250px" class="custom-select" name="category">
 
                     @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
